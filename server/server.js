@@ -1,5 +1,5 @@
 import express from 'express';
-import lawRouter from './src/routes/lawRouter.js';
+import lawRouters from './src/routes/lawRouters.js';
 
 const app = express();
 const port = process.env.port || 3000;
@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
     .send('testresponse');
 });
 
-app.use('/law', lawRouter);
+app.use('/law', lawRouters);
 
 app.listen(port, process.env.IP, () => {
   console.log(`Server is running at http://${process.env.IP || 'localhost'}:${port}`);
