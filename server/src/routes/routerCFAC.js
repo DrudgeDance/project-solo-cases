@@ -1,9 +1,9 @@
 import express from 'express';
 
-const routerCFAC = express.Router();
+const routerCAFC = express.Router();
 
-routerCFAC.get('/', (req, res) => {
-  res.send('CFAC route');
+routerCAFC.get('/', (req, res) => {
+  res.send('CAFC route');
 });
 
-export default routerCFAC;
+export default routerCAFC;

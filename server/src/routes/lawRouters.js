@@ -1,6 +1,6 @@
 import express from 'express';
 import routerPTAB from './routerPTAB.js';
-import routerCFAC from './routerCFAC.js';
+import routerCAFC from './routerCAFC.js';
 import routerITC from './routerITC.js';
 import routerSC from './routerSC.js';
 
@@ -12,7 +12,7 @@ lawRouters.get('/', (req, res) => {
 });
 
 lawRouters.use('/PTAB', routerPTAB);
-lawRouters.use('/CFAC', routerCFAC);
+lawRouters.use('/CAFC', routerCAFC);
 lawRouters.use('/ITC', routerITC);
 lawRouters.use('/SC', routerSC);
 
