@@ -9,9 +9,18 @@
 
 ## Server - Express
 
-## Charts - 
 
-## 
+## Charts - d3js/tabulator/ECharts/Chartjs
+
+
+## Storage - Progressive Web App (cache/offline/)
+
+
+## SMS - Twilio
+
+
+## Login - sessions/jsonwebtoken/OAuth through cache/localstorage/cookies
+
 
 # Structure 
 
