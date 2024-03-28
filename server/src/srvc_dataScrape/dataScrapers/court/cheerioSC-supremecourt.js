@@ -39,7 +39,7 @@ async function cheerioFunction({ name, ScrapedDataModel }) {
   }
 
   // Iterates over the specified years, scraping and saving data for each year
-  for (let year = 22; year <= 23; year++) {
+  for (let year = 17; year <= 23; year++) {
     const data = await fetchOpinionData(year);
     // Insert the scraped data into the database for the current year
     await Promise.all(data.map(datum => ScrapedDataModel.checkAndSaveDocument(datum)));

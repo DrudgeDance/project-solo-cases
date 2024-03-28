@@ -109,7 +109,25 @@ export const scrapersConfigs = {
      //todosFuture: { api: false,numberOfRecords: {}, autoStart: {}, delays: {}, headers: {}, payload: {}, proxy: {}, },
 
  },
+ "SC-wikipedia": {         // KEY 
+  /** KEY IS:
+  * Used for: pollerName, pollerDb, 
+  * Used for: scraperName, scrapeDB, cheerioFilename
+  */  
+ active: true, 
 
+ pollerSettings: {    
+   scheduler: 'BULL',
+   urls: { currUrl: '', futureUrl: '', },
+   retry: { max: 5, delay: 20000, },
+   //todoStretch: {  active: true, commandLine: true, },
+ },
+
+ scraperSettings: { pathCheerio: '/court', },
+   //todoStretch: { active: true, commandLine: true, retry: { max: 10, delay: 20000 }, },
+   //todosFuture: { api: false,numberOfRecords: {}, autoStart: {}, delays: {}, headers: {}, payload: {}, proxy: {}, },
+
+},
 }
 
 
