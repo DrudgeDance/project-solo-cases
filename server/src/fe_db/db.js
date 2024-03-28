@@ -4,7 +4,7 @@ const database = {
 
   async connectDB() {
     try {
-      await mongoose.connect('mongodb://localhost/courtData');
+      await mongoose.connect('mongodb://localhost/adamData');
       console.log('Connected to MongoDB');
     } catch (error) {
       console.error('Connection error:', error.message);

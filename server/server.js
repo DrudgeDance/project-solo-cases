@@ -1,33 +1,35 @@
+import config from './src/_configs/config.core.js';
+
 import express from 'express';
+import path from 'path';
+
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import lawRouters from './src/routes/lawRouters.js';
-import database from './src/db_mongo/db.js';
 import { fork } from 'child_process';
+
+import lawRouters from './src/fe_api/court/fe_routes/lawRouters.js';
+import database from './src/fe_db/db.js';
 
 const app = express();
 
-const port = process.env.port || 3000;
+
+const PORT = config.port;
+const IP = config.IP;
 
 database.connectDB().catch(console.error);
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const scraperProcess = fork(join(__dirname, './src/helperCaseScrape/scrapeSC.js'));
 
-scraperProcess.on('message', (message) => {
-  console.log(`Message from scraper: ${message}`);
-});
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// Handle errors in the scraper process
-scraperProcess.on('error', (error) => {
-  console.error(`Error in scraper process: ${error}`);
-});
 
-// Handle the scraper process exiting
-scraperProcess.on('exit', (code, signal) => {
-  console.log(`Scraper process exited with code ${code} and signal ${signal}`);
-});
+/**
+ * 
+ * 
+ * API PROCESS BELOW
+ * 
+ * 
+ */
+
 
 app.use('/law', lawRouters);
 
@@ -37,7 +39,15 @@ app.get('/', (req, res) => {
     .send('testresponse');
 });
 
-app.listen(port, process.env.IP, () => {
-  console.log(`Server is running at http://${process.env.IP || 'localhost'}:${port}`);
-});
+app.listen(PORT,  IP, () => {
+  console.log(`${config.curr} Server is running at http://${config.IP || 'localhost'}:${PORT}`);
 
+  const scraperPath = path.join(__dirname, 'src/srvc_dataScrape/dataScrapers/scraper.js');
+
+  const scraperProcess = fork(scraperPath);
+
+  scraperProcess.on('message', (message) => {
+    console.log(`Message from scraper: ${message}`);
+  });
+
+});

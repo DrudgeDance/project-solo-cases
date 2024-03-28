@@ -1,0 +1,16 @@
+NODE_ENV=development
+
+
+# # Basic .env file structure
+# PORT=3000
+# IP=127.0.0.1
+# NODE_ENV=development
+
+# # Database configuration
+# DB_HOST=localhost
+# DB_USER=myuser
+# DB_PASS=mypassword
+# DB_NAME=mydatabase
+
+# # API Keys
+# API_KEY=someapikey
