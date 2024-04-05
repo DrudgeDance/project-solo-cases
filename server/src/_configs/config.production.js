@@ -1,8 +1,8 @@
-export const envProd = {
+export const env_production = {
 
   curr: 'Production',
-  IP: process.env.IP,
-  port: process.env.PORT || 3000,
+  IP: "localhost",
+  PORT: 3000,
 
 };  
 

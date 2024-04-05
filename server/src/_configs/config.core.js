@@ -7,17 +7,17 @@ if (result.error) {
   throw result.error;
 }
 
-import { envDev } from './config.development.js';
-import { envProd } from './config.production.js';
-import { envTest} from './config.test.js';
+import { env_development } from './config.development.js';
+import { env_production } from './config.production.js';
+import { env_test } from './config.test.js';
 
 // import dotenv from 'dotenv';
 const environment = process.env.NODE_ENV || 'development';
 
 const configs = {
-  development: envDev,
-  production: envProd,
-  test: envTest,
+  development: env_development,
+  production: env_production,
+  test: env_test,
 };
 
 export default configs[environment] || developmentConfig;

@@ -1,0 +1,44 @@
+import axios from 'axios';
+import cheerio from 'cheerio';
+
+// Adjusted to directly fetch data for the year 2024
+async function fetchOpinionData() {
+  const year = 2024; // Directly setting the year to 2024
+  const url = `https://supreme.justia.com/cases/federal/us/year/${year}.html`;
+  const data = [];
+
+  try {
+    const { data: htmlData } = await axios.get(url);
+    const $ = cheerio.load(htmlData);
+
+    $('.has-padding-content-block-30.-zb.search-result').each((i, elem) => {
+      // Use .prop('outerHTML') to get the full HTML of the <div> element
+      let rowData = $(elem).prop('outerHTML');
+      rowData = rowData.replace(/>\s+</g, '><').trim(); // Minify the HTML
+
+      // Construct the object for this row, including the URL and the full HTML of the div
+      let datum = {
+        data: rowData, // String containing full HTML of the div
+        url // This will be the page URL where the data was found
+      };
+
+      data.push(datum);
+    });
+
+    return data;
+  } catch (error) {
+    console.error('Error fetching data for year 2024:', error);
+    return []; // Return empty array in case of error
+  }
+}
+
+// Refactored to scrape data only for 2024 and serve as the entry point
+async function cheerioFunction({ name, ScrapedDataModel }) {
+  const data = await fetchOpinionData(); // Fetch data for 2024
+
+  // Insert the scraped data into the database
+  await Promise.all(data.map(datum => ScrapedDataModel.checkAndSaveDocument(datum)));
+  console.log(`Data for 2024 inserted into MongoDB collection "scraper${name}"`);
+}
+
+export default cheerioFunction;

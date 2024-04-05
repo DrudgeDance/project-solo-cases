@@ -1,5 +1,6 @@
 // server/src/srvc_dataScrape/dataScrape/scraperWorker.js
 import { db }  from '../db/db_scraper&poller.js';
+import cheerioFunction from './court/cheerioSC-oyez.js';
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -17,9 +18,27 @@ const scrapeWebsite = async ({ name, pathCheerio }) => {
     const ScrapedDataModel = db.createModel( `scraper${ name }` ); 
 
     const __dirname = dirname(fileURLToPath(import.meta.url));
-    const { default: cheerioFunction } = await import( path.join(__dirname, `${pathCheerio}/cheerio${name}.js`) );
+    const pathBug = 'file:///Users/adamduda/Desktop/__dev/projects/project-solo-cases/server/src/srvc_dataScrape/dataScrapers/court/cheerioSC-oyez.js'
+    // try{
+    //   //path.join(__dirname, `${pathCheerio}/cheerio${name}.js`)
+    //   //const { default: cheerioFunction } = await import( pathBug );
 
-    await cheerioFunction({ name, ScrapedDataModel });
+    //   const module = await import(path.join(__dirname, `${pathCheerio}/cheerio${name}.js`));
+    //   cheerioFunction = module.default;
+
+    // } catch (e){
+    //   console.log('error',e)
+    // }
+        console.log(path.join(__dirname, `${pathCheerio}/cheerio${name}.js`))
+    // console.log("Child stuff", name, ScrapedDataModel)
+
+    console.log("Starting cheerioFunction");
+    try {
+      await cheerioFunction({ name, ScrapedDataModel });
+      console.log("cheerioFunction completed successfully");
+    } catch (error) {
+      console.error("Error in cheerioFunction:", error);
+    }
 
     console.log(`scraperWorker_${ name }: End of data insertion attempt to collection.`);
 

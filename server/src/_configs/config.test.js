@@ -1,4 +1,4 @@
-export const envTest = {
+export const env_test = {
 
   curr: 'Test',
   IP: 'localhost',

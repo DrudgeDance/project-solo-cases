@@ -6,7 +6,7 @@ import cheerio from 'cheerio';
  */ 
 
 async function cheerioFunction({ name, ScrapedDataModel }) {
-
+  console.log("copending child stuff", name, "AHHHH")
   async function fetchOpinionData(year) {
     const url = `https://www.supremecourt.gov/opinions/slipopinion/${year}`;
     try {
