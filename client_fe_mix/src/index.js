@@ -2,15 +2,15 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from './src/redux/store.js';
-import App from './src/components/App.js';
+import { store } from './redux/store.js';
+import App from './components/App.js';
 
 // MS OAuth Wrapper
-import { PublicClientApplication } from '@azure/msal-browser';
-import { MsalProvider } from '@azure/msal-react';
-import { msalConfig } from './src/components/Pages/OAuth/oauth_msalConfig.js';
+// import { PublicClientApplication } from '@azure/msal-browser';
+// import { MsalProvider } from '@azure/msal-react';
+// import { msalConfig } from './src/components/Pages/OAuth/oauth_msalConfig.js';
 
-const msalInstance = new PublicClientApplication(msalConfig);
+// const msalInstance = new PublicClientApplication(msalConfig);
 const container = document.getElementById('main');
 
 if ( !container ) {
@@ -24,9 +24,9 @@ if ( !container ) {
         {/* REACT-ROUTER-DOM (BrowserRouter) */}
         <BrowserRouter>
           {/* MS OAuth (MSAL Provider) */}
-          <MsalProvider instance={msalInstance}>
+          {/* <MsalProvider instance={msalInstance}> */}
             <App />
-          </MsalProvider>
+          {/* </MsalProvider> */}
         </BrowserRouter>
       </Provider>
     </React.StrictMode>,

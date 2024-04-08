@@ -1,15 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const CourtDataTableLink = () => {
+const CatLink = () => {
   return (
     <NavLink 
-      to="/dashboard/court-data" 
+      to="/dashboard/cat" 
       className={({ isActive }) => isActive ? "nav-link selected" : "nav-link"}
     >
-      Court Data Table
+      Cat Page
     </NavLink>
   );
 };
 
-export default CourtDataTableLink;
+export default CatLink;
+

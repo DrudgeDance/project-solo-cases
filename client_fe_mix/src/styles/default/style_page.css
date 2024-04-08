@@ -1,0 +1,57 @@
+/* Resets */
+html, body, ul, li, nav {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  min-height: 100vh;
+}
+
+/* Main navbar container styling */
+.navbar-container {
+  background-color: white;
+  margin: 20px; /* Margin around the navbar for the "border" effect */
+  border-radius: 15px; /* Rounded corners for the outer border */
+  overflow: hidden; /* Keeps inner elements within the rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+}
+
+/* Navbar styling */
+nav {
+  background-color: #6495ED; /* Cornflower blue background */
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center; /* Centers items horizontally */
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  margin: 0 15px; /* Spacing between items */
+}
+
+/* Link styling */
+nav ul li a {
+  color: #E6F0FA; /* Light blue for text */
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px 20px; /* Padding around the text */
+  border-radius: 5px; /* Rounded corners for the links */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions for hover and focus */
+}
+
+/* Hover and focus states */
+nav ul li a:hover, nav ul li a:focus {
+  background-color: #E6F0FA; /* Light blue background on hover/focus */
+  color: #6495ED; /* Contrast text color */
+}

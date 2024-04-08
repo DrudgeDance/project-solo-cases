@@ -2,7 +2,7 @@ import errorHandler from './../handlers/errorHandler.js';
 import crypto from 'crypto';
 
 const cookieController = {};
-  console.log('hello')
+  console.log('')
   cookieController.ssidboxDispatch = async (req, res, next) => {
     console.log('==Controller [cookie] : Generating a cookie ...');
 
@@ -10,8 +10,9 @@ const cookieController = {};
     
     if ( hasCookieVaultDetails ) {
       const { cookieId } = req.dataVault.query;
-      console.log(cookieId);
-      res.cookie('ssid', cookieId, { httpOnly: true, sameSite: 'Strict' });
+      console.log( cookieId );
+      res.cookie('ssid', cookieId, { httpOnly: true });
+      console.log("cookieController: ", cookieId)
       return next();
     } 
 

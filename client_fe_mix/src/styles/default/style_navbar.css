@@ -1,0 +1,44 @@
+/* Reset margins and paddings for consistency */
+html, body, ul, li, nav {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif; /* Sets a default font for the body */
+}
+
+/* Main navbar styling */
+nav {
+  background-color: #6495ED; /* Cornflower blue background */
+  padding: 10px 0; /* Top and bottom padding */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+nav ul {
+  list-style-type: none; /* Removes default list styling */
+  display: flex; /* Aligns items in a row */
+  justify-content: center; /* Centers items horizontally */
+  align-items: center; /* Centers items vertically */
+}
+
+nav ul li {
+  margin: 0 15px; /* Adds horizontal spacing between items */
+}
+
+/* Styling for links and lazily loaded link components */
+nav ul li a, .logout-button {
+  color: #E6F0FA; /* Light blue, almost white text color */
+  text-decoration: none; /* Removes underline from links */
+  font-size: 16px; /* Sets a standard font size for text */
+  padding: 10px 20px; /* Padding for larger clickable area */
+  border-radius: 5px; /* Rounded corners for a modern look */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Hover and focus styles for links */
+nav ul li a:hover, nav ul li a:focus, .logout-button:hover, .logout-button:focus {
+  background-color: #E6F0FA; /* Lightens background on hover/focus */
+  color: #6495ED; /* Changes text color for contrast */
+  text-decoration: none; /* Ensures underline does not reappear on focus */
+}

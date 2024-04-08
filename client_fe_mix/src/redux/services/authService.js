@@ -71,6 +71,26 @@ const signup = async (userData) => {
   return data.user; // or return { user: data.user, token: data.token } depending on your needs
 };
 
-const authService = { login, logout, signup };
+const githubLogin = async (code, state) => {
+  console.log(":::GITHUBLOGIN:::", code, state )
+  const response = await fetch('/auth/github', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ code, state }),
+  });
+  if (!response.ok) {
+    throw new Error('GitHub OAuth failed');
+  }
+  const data = await response.json();
+
+  // Store the token in a local cache (here, using localStorage for simplicity)
+  localStorage.setItem('token', data.token); // Storing token in local cache
+
+  return data; // Return full data including user and token
+};
+
+const authService = { login, logout, signup, githubLogin };
 
 export default authService;

@@ -1,0 +1,87 @@
+/* Centers the content of the login page */
+.login-page-outerWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+}
+
+/* Updated to center and scale the innerWrapper responsively */
+.login-page-innerWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #E6F0FA; /* Lighter shade of blue for the background */
+  padding: 4vw; /* Responsive padding based on viewport width */
+  border-radius: 1vw;
+  box-shadow: 0.5vw 0.5vw 0.5vw rgba(0, 0, 0, 0.1);
+  width: 50vw; /* Responsive width based on viewport width */
+  max-width: 500px; /* Max-width to prevent it from becoming too wide on large screens */
+  margin: auto;
+  font-size: 1.2vw; /* Responsive base font size for text within the wrapper */
+}
+
+/* Ensure .login-form and .login-oauth are of the same size */
+.login-page-innerWrapper .login-form,
+.login-page-innerWrapper .login-oauth {
+  width: calc(100% - 20px); /* Match width accounting for padding */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center children */
+}
+
+/* Make .github-button stretch to the length of .login-oauth */
+.login-page-innerWrapper .login-oauth .github-button {
+  width: 100%; /* Stretch to fill its container */
+  margin: 10px 0; /* Consistent spacing */
+}
+
+/* Styling inputs, buttons within .login-form for consistency and alignment */
+.login-page-innerWrapper .login-form input[type="text"], 
+.login-page-innerWrapper .login-form input[type="password"], 
+.login-page-innerWrapper .login-form button, 
+.login-page-innerWrapper .github-button {
+  width: 100%; /* Ensure full width within their respective containers */
+  margin: 20px 0; /* Increased vertical spacing */
+  padding: 20px; /* Increased padding for larger touch targets */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #eef4f7;
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  font-size: clamp(2rem, 3vw, 2.5rem); /* Increased font size for better visibility */
+}
+
+/* Adjustments for responsiveness and clarity */
+.login-page-innerWrapper {
+  font-size: clamp(4rem, 6vw, 5rem); /* Increased base font size */
+}
+
+.login-page-innerWrapper input[type="text"],
+.login-page-innerWrapper input[type="password"],
+.login-page-innerWrapper button,
+.login-page-innerWrapper .github-button,
+.login-page-innerWrapper p {
+  font-size: clamp(2rem, 3vw, 2.5rem); /* Further increased text size for better visibility */
+}
+
+/* Hover effect for buttons within .login-form and .login-oauth to enhance user interaction feedback */
+.login-page-innerWrapper .login-form button:hover, 
+.login-page-innerWrapper .login-oauth button:hover {
+  background-color: #5678D0; /* Slightly darker shade of blue on hover */
+  opacity: 1; /* Override any other opacity settings to ensure clarity */
+}
+
+/* Active (click) effect for buttons within .login-form and .login-oauth for better interaction feedback */
+.login-page-innerWrapper .login-form button:active,
+.login-page-innerWrapper .login-oauth button:active {
+  background-color: #4567B0; /* Even darker shade of blue on click */
+  opacity: 0.7; /* Slightly reduce opacity to give a pressed-button effect */
+}
+
+.login-page-innerWrapper .login-form button, 
+.login-page-innerWrapper .login-oauth .github-button {
+  background-color: #6495ED; /* Specific blue color for all buttons */
+}
+

@@ -1,42 +1,6 @@
-/*** <Link> vs <NavLink>
-
-(1) Active Styling: The main difference is that <NavLink> can automatically apply an active class or style based on the current route, which <Link> cannot do.
-
-(2) Props for Active State: <NavLink> supports additional props for managing the active state (activeClassName, activeStyle, exact, isActive), providing greater control over the appearance of navigation links.
-
-Use Cases: Use <Link> for generic navigation that doesn't require active styling. Use <NavLink> for components like navigation bars or breadcrumbs where indicating the current page or section is beneficial.
-
-Conclusion:  <NavLink> offers extended functionality for cases where visual feedback on navigation state is needed.
-
-
-    <nav>
-      <Link to="/home">Home</Link>
-      <Link to="/about">About</Link>
-      <Link to="/contact">Contact</Link>
-    </nav>
-
-    **** VERSUS ****
-
-    <nav>
-      <NavLink to="/home" activeClassName="active">Home</NavLink>
-      <NavLink to="/about" activeClassName="active">About</NavLink>
-      <NavLink to="/contact" activeClassName="active">Contact</NavLink>
-    </nav>
-
-    && CSS
-
-    .active {
-      color: red;
-      font-weight: bold;
-    }
-
-***/
-
-
-
-
 
 import React, { Suspense, lazy } from 'react';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -54,29 +18,51 @@ const Navbar = () => {
     </Suspense>
   );
 
-  const PollersLink = loadComponent(lazy(() => import('./Navbar/link_Pollers.js')));
+  const AdminLink = loadComponent(lazy(() => import('./Navbar/link_Admin.js')));
   const CourtDataTableLink = loadComponent(lazy(() => import('./Navbar/link_CourtDataTable.js')));
   const LogoutButton = loadComponent(lazy(() => import('./LogoutButton.js')));
+  const CatLink = loadComponent(lazy(() => import('./Navbar/link_Cat.js')));
+  const DogLink = loadComponent(lazy(() => import('./Navbar/link_Dog.js')));
 
   return (
     <nav>
-      <ul>
-        {user && user.roles.includes('admin') && (
-          <>
-            <li><PollersLink /></li>
-          </>
-        )}
-        {user && user.roles.includes('user') && (
-          <> 
-            <li><CourtDataTableLink /></li>
-          </>         
-        )}
-        {user && (
-          <>
-            <li><LogoutButton /></li>
-          </>  
-        )}
-      </ul>
+      <div className="global-wrapper">
+        <ul>
+          {user && user.roles.includes('superadmin') && (
+            <>
+              <li><AdminLink /></li>
+              <li><CourtDataTableLink /></li>
+              <li><DogLink /></li>
+              <li><CatLink /></li>
+            </>
+          )}
+          {user && user.roles.includes('admin') && (
+            <>
+              <li><AdminLink /></li>
+            </>
+          )}
+          {user && user.roles.includes('user') && (
+            <> 
+              <li><CourtDataTableLink /></li>
+            </>         
+          )}
+          {user && user.roles.includes('dog') && (
+            <> 
+              <li><DogLink /></li>
+            </>         
+          )}
+          {user && user.roles.includes('cat') && (
+            <> 
+              <li><CatLink /></li>
+            </>         
+          )}
+          {user && (
+            <>
+              <li><LogoutButton /></li>
+            </>  
+          )}
+        </ul>
+      </div>
     </nav>
   );
 };

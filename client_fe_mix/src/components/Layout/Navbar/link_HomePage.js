@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const HomepageLink = () => {
   return (
-    <Link to="/home">Home</Link> // Assuming your home page route is "/"
+    <Link to="/home">Home</Link>
   );
 };
 

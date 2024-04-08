@@ -1,15 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const CourtDataTableLink = () => {
+const AdminLink = () => {
   return (
     <NavLink 
-      to="/dashboard/court-data" 
+      to="/dashboard/admin" 
       className={({ isActive }) => isActive ? "nav-link selected" : "nav-link"}
+ 
     >
-      Court Data Table
+      Admin Page
     </NavLink>
   );
 };
 
-export default CourtDataTableLink;
+export default AdminLink;

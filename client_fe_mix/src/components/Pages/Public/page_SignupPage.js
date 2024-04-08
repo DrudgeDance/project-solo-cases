@@ -21,24 +21,26 @@ function SignupPage() {
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Sign Up</button>
-      </form>
-      <p>Already have an account? <a href="/">Login here</a></p>
+    <div className="signup-page-wrapper">
+      <div className="signup-page">
+        <h2>Sign Up</h2>
+        <form onSubmit={handleSubmit} className="signup-form">
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="/">Login here</a></p>
+      </div>
     </div>
   );
 }

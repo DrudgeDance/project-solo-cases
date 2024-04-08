@@ -1,10 +1,12 @@
 import React, { Suspense, lazy } from 'react';
-import { Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import ProtectedRoute from './../routes/ProtectedRoute.js';
+import GithubOAuthCallback from './Pages/OAuth/oauth_GithubCallback.js';
 
-// import Dashboard from './Layout/Dashboard.js'
-
-
+import './../styles/default/style_loginPage.css';
+import './../styles/default/style_navbar.css'; 
+import './../styles/default/style_page.css'; 
+import './../styles/default/style_signupPage.css'; 
 
 // Lazy load components with suspense fallback
 const loadComponent = (Component) => (props) => (
@@ -20,10 +22,11 @@ const SignupPage = loadComponent(lazy(() => import('./Pages/Public/page_SignupPa
 function App() {
   return (
     <Routes>
+      <Route path="/callback" element={<GithubOAuthCallback />} />
       <Route path="/" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} /> {/* Signup route */}
       <Route path="/dashboard/*" element={
-        <ProtectedRoute allowedRoles={['user', 'admin']}>
+        <ProtectedRoute allowedRoles={['user', 'admin', 'cat', 'dog', 'superadmin']}>
           <Dashboard />
         </ProtectedRoute>
       } />

@@ -24,7 +24,13 @@ const userSchema = new Schema({
     of: Date,
     default: () => new Map([['createdAt', new Date()]])
   },
-  oauthProviders: { type: Object }
+  // Inside the userSchema definition in userModel.js
+  oauthProviders: {
+    type: Map,
+    of: String,
+    default: () => new Map() // This now can store GitHub ids or tokens
+  },
+
 }, { 
   timestamps: true,
   toObject: {
@@ -44,41 +50,45 @@ class UserClass {
     return bcrypt.compare(candidatePassword, hashedPassword);
   }
   
-  static async createNewUser({ username, password }) {
-    // Instead of generating the uniqueComboHash in the class method, 
-    // you could move this logic into a middleware or keep it here based on preference.
-
+  static async createNewUser(
+    { 
+      username, 
+      password = crypto.randomBytes(16).toString('hex'), 
+      email = '', 
+      oauthProviders = {}, 
+      profileImageUrl = '' 
+    }) {
     // Generate the uniqueComboHash
     const hashInput = `${username}${password}`;
     const uniqueComboHash = crypto.createHash('sha256').update(hashInput).digest('hex');
     
     // Check if a user with the same uniqueComboHash already exists
-    const existingUser = await User.findOne({ uniqueComboHash });
+    const existingUser = await this.findOne({ uniqueComboHash });
     if (existingUser) {
-      // User with the same hash exists, prevent creation and handle the situation
       throw new Error('User already exists');
     }
-
-    // Hash the password before calling create
+  
+    // Hash the password
     const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
     const hashedPassword = await bcrypt.hash(password, salt);
-
+  
+    // Convert oauthProviders object to a Map, handling the case where it's not provided
+    const oauthProvidersMap = new Map(Object.entries(oauthProviders));
+  
     try {
       // Use create method to insert the document into the database
-      const newUser = await User.create({
+      const newUser = await this.create({
         username,
-        password: hashedPassword, // Use the hashed password
-        uniqueComboHash // Assign the generated uniqueComboHash to the new user
+        password: hashedPassword,
+        email,
+        uniqueComboHash,
+        oauthProviders: oauthProvidersMap,
+        profileImageUrl,
       });
       
       return newUser;
     } catch (error) {
-      throw errorHandler.createErr({
-        file: 'userModel.js',
-        method: 'createNewUser',
-        type: 'Problem creating a new user',
-        error, // Include the error object in the thrown error
-      });
+      throw new Error('Problem creating a new user');
     }
   }
 }

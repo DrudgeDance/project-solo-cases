@@ -41,6 +41,7 @@ cryptController.encryptVault = async (req, res, next) => {
 
 cryptController.decryptVault = async (req, res, next) => {
   const userId = req.cookies['ssid']; 
+  console.log("SSSSSSIIIDDDDCOOOKIIIEEE:", userId)
 
   if ( !userId ) {
     return next(new Error(`Invalid request for decryption: SSID cookie not found`));

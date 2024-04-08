@@ -7,6 +7,8 @@ userController.signin = async (req, res, next) => {
   const { username, password } = req.body;
   const { signin } = req.query; 
 
+  console.log("SIGNIN::", signin)
+
   if (!username || !password) {
     return res.status(400).send('Username and password are required');
   }
@@ -26,6 +28,7 @@ userController.signin = async (req, res, next) => {
         return res.status( result.statusCode ).send( result.error );
       }
     } else if ( signin === 'signup' ) {
+      console.log("SIGNUP!!!")
       result = await user.handleSignup(username, password);
       if ( !result.success ) {
         return res.status( result.statusCode ).send( result.error );

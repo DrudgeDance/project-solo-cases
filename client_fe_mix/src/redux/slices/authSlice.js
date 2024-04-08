@@ -37,6 +37,18 @@ export const signup = createAsyncThunk('auth/signup', async (userData, thunkAPI)
   }
 });
 
+export const githubLogin = createAsyncThunk('auth/githubLogin', 
+  async ({ code, state }, thunkAPI) => {
+    console.log(":::AUTHSLICE:::", code, state)
+    try {
+      const data = await authService.githubLogin(code, state);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
