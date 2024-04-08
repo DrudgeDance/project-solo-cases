@@ -2,11 +2,11 @@
   "name": "prj_s_cases",
   "version": "0.0.1",
   "description": "Data scraper for legal opinions.",
-  "main": "./client_fe_mix/index.js",
+  "main": "./client_fe_mix/sec/index.js",
   "type": "module",
   "scripts": {
-    "webpack:build": "webpack --config webpack/wbpk.config.development.js",
-    "webpack:serve": "webpack serve --config webpack/wbpk.config.development.js",
+    "webpack:build": "webpack --config ./client_fe_mix/webpack/wbpk.config.development.js",
+    "webpack:serve": "webpack serve --config ./client_fe_mix/webpack/wbpk.config.development.js",
     "start": "nodemon ./server/server.js",
     "server:start": "nodemon ./server/server.js",
     "dev:env:pre": "concurrently \"npm:webpack:build\"  \"npm:webpack:serve\" ",
@@ -22,9 +22,9 @@
     "@reduxjs/toolkit": "^2.2.2",
     "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
-    "bull": "^4.12.2",
     "cheerio": "^1.0.0-rc.12",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "csurf": "^1.11.0",
     "dotenv": "^16.4.5",
@@ -32,9 +32,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.4",
     "nodemon": "^3.1.0",
-    "puppeteer": "^22.6.1",
-    "puppeteer-extra": "^3.3.6",
-    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "query-string": "^9.0.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
     "yargs": "^17.7.2"
@@ -50,6 +48,7 @@
     "css-loader": "^6.10.0",
     "dotenv-webpack": "^8.1.0",
     "file-loader": "^6.2.0",
+    "html-loader": "^5.0.0",
     "html-webpack-plugin": "^5.6.0",
     "isomorphic-fetch": "^3.0.0",
     "mini-css-extract-plugin": "^2.8.1",
@@ -62,7 +61,6 @@
     "webpack": "^5.91.0",
     "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.0.4",
-    "workbox-webpack-plugin": "^7.0.0"
+    "webpack-dev-server": "^5.0.4"
   }
 }
